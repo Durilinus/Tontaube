@@ -17,38 +17,38 @@ public class Oberflaeche extends javax.swing.JPanel {
      * Creates new form GUI
      */
     
+     
     private int xFK;
     private int yFK;
+
     Steuerung steuerung;
-    
+    Fadenkreuz FK;
     
     public Oberflaeche() {
-        System.out.println("of");
-        initComponents();
         steuerung = new Steuerung(this);
+        FK = new Fadenkreuz(this);
         setFocusable(true);
         requestFocus();
+        initComponents();
     }
     
     
     public void geklicktMaus(){
-       int x = getX();
-       int y = getY();
        
-       steuerung.feuer(x, y);
+       steuerung.feuer(xFK, yFK);
     }
     
-    public void paintComponents(Graphics g){
-        System.out.println("paintCom");
-        g.drawRoundRect(getX(),getY(),30,30,30,30); 
-        System.out.println(getX());
+    @Override
+    public void paintComponent(Graphics g){
+        super.paintComponent(g); 
         zeichnen(g);
     }
     
-    public void zeichnen(Graphics g){
-        
+    public void zeichnen(Graphics g){       
         steuerung.zeichneAlleTt(g);
+        FK.zeichnen(g);
     }
+    
     
     public void zeigeBildFertig(){
         
@@ -73,6 +73,7 @@ public class Oberflaeche extends javax.swing.JPanel {
         return yFK;
     }
 
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,9 +83,20 @@ public class Oberflaeche extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
+            }
+        });
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                formMouseEntered(evt);
             }
         });
 
@@ -102,9 +114,27 @@ public class Oberflaeche extends javax.swing.JPanel {
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-        
         geklicktMaus();
+        System.out.println("klick");
+        this.xFK=evt.getX();
+        this.yFK=evt.getY();
     }//GEN-LAST:event_formMouseClicked
+
+    private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formMouseEntered
+
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formMouseDragged
+
+    private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
+        // TODO add your handling code here:
+        this.yFK = evt.getY();
+        this.xFK = evt.getX();
+        FK.setX();
+        FK.setY();
+    }//GEN-LAST:event_formMouseMoved
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

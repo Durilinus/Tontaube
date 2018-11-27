@@ -26,73 +26,85 @@ public class Steuerung {
     
     public Steuerung(Oberflaeche Of){
         o = Of;
+        Timer3.start();
     }
     
-    private final Timer Timer = new Timer(1000, new ActionListener(){
+    private final Timer Timer = new Timer(10000, new ActionListener(){
         @Override
         public void actionPerformed(ActionEvent ae) {
-            tick();
-            aP++;
 
-            if(aP == 10){
-                verarbeiteTick();
-                aP = 0;
-            }
-                       
+                verarbeiteTick();                
         }     
     });
     
+    private final Timer Timer2 = new Timer(300, new ActionListener(){
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            
+            tick();     
+
+        }     
+    });
+    
+    
+    private final Timer Timer3 = new Timer(1, new ActionListener(){
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            
+            o.aktualisiereOberflaeche();
+
+        }     
+    });
 
     
     public void starteSpiel(){
         Timer.start();
+        Timer2.start();
     }
     
-    public void tick(){
-        System.out.println("tick");
-       o.aktualisiereOberflaeche(); 
+    public void tick(){      
+        o.aktualisiereOberflaeche();         
+        for(int i=0; i < Tontaube1.gibAnzahlTontauben(); i++){
+            dieTontaube[i].bewege();
+        }   
+        System.out.println("anzahl: "+Tontaube1.gibAnzahlTontauben());
     }
+
     
     public void verarbeiteTick(){ 
         System.out.println("10erTick");
-      while(Tontaube1.gibAnzahlTontauben()<10){
-          
-        for(int naechsteTt = 0; naechsteTt < 10; naechsteTt++){
-            
+      while(Tontaube1.gibAnzahlTontauben()< 10){
+                
             switch(zufall.nextInt(3)){           
         
-                case 0: dieTontaube[naechsteTt] = new Tontaube1();
-                        dieTontaube[naechsteTt].setzeSichtbar(true);
+                case 0: dieTontaube[Tontaube1.gibAnzahlTontauben()] = new Tontaube1();
+                        dieTontaube[Tontaube1.gibAnzahlTontauben()].setzeSichtbar(true);
                     break;
-                case 1: dieTontaube[naechsteTt] = new Tontaube2();
-                        dieTontaube[naechsteTt].setzeSichtbar(true);
+                case 1: dieTontaube[Tontaube1.gibAnzahlTontauben()] = new Tontaube2();
+                        dieTontaube[Tontaube1.gibAnzahlTontauben()].setzeSichtbar(true);
                     break;
-                case 2: dieTontaube[naechsteTt] = new Tontaube3();
-                        dieTontaube[naechsteTt].setzeSichtbar(true);
+                case 2: dieTontaube[Tontaube1.gibAnzahlTontauben()] = new Tontaube3();
+                        dieTontaube[Tontaube1.gibAnzahlTontauben()].setzeSichtbar(true);
                     break;
             }
+            for(int naechsteTt = 0; naechsteTt <= Tontaube1.gibAnzahlTontauben(); naechsteTt++){
             dieTontaube[naechsteTt].berechnePosition();
+            }
             Tontaube1.neueTontaube();
             break;
-        }
-        break;
+        
       }
       o.aktualisiereOberflaeche();
-        System.out.println(dieTontaube[0].xPos);
     }
     
     public void zeichneAlleTt(Graphics g){      
-        System.out.println("zeichnet");
-        for(int T = 0; T <10; T++){
-            System.out.println(dieTontaube[T].gibSichtbar());
+        for(int T = 0; T < Tontaube1.gibAnzahlTontauben(); T++){
             if(dieTontaube[T].gibSichtbar() == true){
-               int xPos = dieTontaube[T].gibX();
-               int yPos = dieTontaube[T].gibY();
+               int xPosTt = dieTontaube[T].gibX();
+               int yPosTt = dieTontaube[T].gibY();
                int groesse = dieTontaube[T].gibGroesse();
-               g.drawRect(xPos, yPos, groesse, groesse);
-               System.out.println(dieTontaube[T].gibX());
+               g.drawRect(xPosTt, yPosTt+150, 15, 15);           
             }   
-            break;
         }    
     }    
     
@@ -102,8 +114,10 @@ public class Steuerung {
                     dieTontaube[z].setzeSichtbar(false);
                     anzahlTreffer++;
                     Tontaube1.getroffeneTontaube();
+                    System.out.println("getroffen");
                 }
             }
+            System.out.println(fx+"-"+fy);
     }
     
     public boolean pruefeObGetroffen(){
