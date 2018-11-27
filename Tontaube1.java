@@ -11,8 +11,15 @@ package mendykjanniktontauben;
  */
 public class Tontaube1 extends Tontaube{
    
-    double sin = Math.sin(xPos)/4;
-    int sini = (int) sin;
+    int groesse = 30;
+    double PI = Math.PI;
+    
+    //int xstart = 0;   
+    //int ystart = 150;
+    
+    public Tontaube1(){
+        
+    }
     
     @Override
     public void berechnePosition() {
@@ -20,9 +27,11 @@ public class Tontaube1 extends Tontaube{
     }
     
     public void bewege(){
-        xPos = xPos + sini;
-        yPos = yPos + sini*6;
-        
+        PI+= Math.PI/2;
+        xPos++;
+        yPos = (int) (Math.sin(xPos)*15);
+        System.out.println(xPos);
+        System.out.println(yPos);
     }
     
     

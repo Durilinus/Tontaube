@@ -9,10 +9,17 @@ package mendykjanniktontauben;
  *
  * @author Jannik.Mendyk
  */
-public class Tontaube3 extends Tontaube{
+public class Tontaube3 extends Tontaube{    
     
-    static int typ = 3;
+    double PI = Math.PI;
 
+    //int xstart = 0;   
+    //int ystart = 150;
+    
+    public Tontaube3(){
+
+    }
+    
     @Override
     public void berechnePosition() {
         
@@ -20,7 +27,11 @@ public class Tontaube3 extends Tontaube{
 
     @Override
     public void bewege() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PI+= Math.PI/2;
+        xPos++;
+        yPos = (int) (Math.sin(xPos)*15);
+        System.out.println(xPos);
+        System.out.println(yPos);
     }
     
 }

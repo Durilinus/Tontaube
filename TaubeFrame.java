@@ -7,16 +7,13 @@ package mendykjanniktontauben;
 
 /**
  *
- * @author Jannik.Mendyk
+ * @author Jannik
  */
 public class TaubeFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form TaubeFrame
      */
-    
-    
-    
     public TaubeFrame() {
         initComponents();
         setFocusable(false);
@@ -48,7 +45,7 @@ public class TaubeFrame extends javax.swing.JFrame {
         oberflaeche2.setLayout(oberflaeche2Layout);
         oberflaeche2Layout.setHorizontalGroup(
             oberflaeche2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 317, Short.MAX_VALUE)
+            .addGap(0, 650, Short.MAX_VALUE)
         );
         oberflaeche2Layout.setVerticalGroup(
             oberflaeche2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -60,32 +57,27 @@ public class TaubeFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(oberflaeche2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(oberflaeche2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(oberflaeche2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(0, 255, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addComponent(jButton1)
+                .addContainerGap(512, Short.MAX_VALUE))
+            .addComponent(oberflaeche2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
         setFocusable(false);
         oberflaeche2.spielStart();
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
